@@ -1,0 +1,7 @@
+#example_wrapper {
+    border-left: 1px solid #eeeeee;
+    padding-left: 15px;
+}
+#example > tbody > tr {
+    cursor: pointer;
+}

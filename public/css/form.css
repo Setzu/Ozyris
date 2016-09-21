@@ -1,0 +1,9 @@
+.form-style {
+    border: 1px solid #ffffff;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+}
+#login-form {
+    display: inline-block
+}

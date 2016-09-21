@@ -1,0 +1,21 @@
+{
+  "name": "ozyris/composer",
+  "require-dev": {
+    "phpunit/phpunit": "5.4.6"
+  },
+  "authors": [
+    {
+      "name": "david blanchard",
+      "email": "setzu28@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Ozyris\\Controller\\": "src/Controller/",
+      "Ozyris\\Model\\": "src/Model/",
+      "Ozyris\\Service\\": "src/Service/",
+      "Ozyris\\Validator\\": "src/Validator/"
+    }
+  },
+  "require": {}
+}
