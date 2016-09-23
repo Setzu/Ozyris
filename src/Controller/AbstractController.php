@@ -13,8 +13,9 @@ use Ozyris\Service\SessionManager;
 
 abstract class AbstractController extends SessionManager implements ControllerInterface
 {
-    private $controllerName = 'index';
-    private $actionName = 'index';
+    private $_controllerName = 'index';
+    private $_actionName = 'index';
+    protected $aVariables = array();
 
     public function __construct()
     {
@@ -29,10 +30,10 @@ abstract class AbstractController extends SessionManager implements ControllerIn
         $sControllerName = (string) strtolower(trim(htmlspecialchars($_GET['controller'])));
 
         if (!empty($sControllerName)) {
-            $this->controllerName = $sControllerName;
+            $this->_controllerName = $sControllerName;
         }
 
-        return $this->controllerName;
+        return $this->_controllerName;
     }
 
     /**
@@ -43,16 +44,35 @@ abstract class AbstractController extends SessionManager implements ControllerIn
         $sActionName = (string) strtolower(trim(htmlspecialchars($_GET['action'])));
 
         if (!empty($sActionName)) {
-            $this->actionName = $sActionName;
+            $this->_actionName = $sActionName;
         }
 
-        return $this->actionName;
+        return $this->_actionName;
+    }
+
+    /**
+     * @param array $aVariables
+     * @throws \Exception
+     */
+    public function setVariables(array $aVariables = array())
+    {
+        if (!is_array($aVariables)) {
+            throw new \Exception('Le paramètre doit être un array.');
+        }
+
+        foreach ($aVariables as $sName => $mValue) {
+            if (!is_string($sName)) {
+                throw new \Exception('Le paramètre doit être une chaîne de caractères.');
+            }
+
+            $this->{$sName} = $mValue;
+        }
     }
 
     /**
      * Inclusion des vues dans le layout
      *
-     * @return $this
+     * @return mixed
      */
     public function render()
     {

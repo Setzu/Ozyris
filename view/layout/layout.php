@@ -19,6 +19,7 @@ $oIndexController = new IndexController();
     <link rel="stylesheet" href="../../public/css/layout.css">
     <link rel="stylesheet" href="../../public/css/header.css">
     <link rel="stylesheet" href="../../public/css/form.css">
+    <link rel="stylesheet" href="../../public/css/element.css">
 </head>
 
 <body>

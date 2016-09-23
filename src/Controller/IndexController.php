@@ -28,10 +28,20 @@ class IndexController extends AuthentificationController
     /**
      * Récupère le paramètre de l'url pour charger la vue associée
      *
-     * @return bool
+     * @return mixed
      */
     public function indexAction()
     {
+        $atest = array(1, 2, 3, 'quatre');
+        $u = 10;
+        $dra = 'test';
+
+        $this->setVariables(array(
+            'test' => $atest,
+            'dra' => $dra,
+            'u' => $u
+        ));
+
         return $this->render();
     }
 }
