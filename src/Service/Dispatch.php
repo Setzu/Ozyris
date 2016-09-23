@@ -14,7 +14,7 @@ class Dispatch
 {
 
     /**
-     * Dertemine le controller et l'action à appeler selon l'url
+     * Détermine le controller et l'action à appeler selon l'url
      * Le controller appeler par défaut est IndexController
      * L'action des controller si non renseigné, est indexAction
      *

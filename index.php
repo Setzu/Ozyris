@@ -15,8 +15,8 @@ try {
             <div class="col-md-8 col-md-offset-2">
                 <div class="page-not-fount">
                     <h3 class="page-not-found">
-                        Une erreur s'est produite, merci de réessayer ultérieurement.
-<!--                        --><?php // echo $e->getMessage(); ?>
+<!--                        Une erreur s'est produite, merci de réessayer ultérieurement.-->
+                        <?php  echo $e->getMessage(); ?>
                     </h3>
                 </div>
                 <a href="" class="btn btn-danger btn-retour" style="float: right;">Retour</a>

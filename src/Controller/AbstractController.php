@@ -54,7 +54,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
      * @param array $aVariables
      * @throws \Exception
      */
-    public function setVariables(array $aVariables = array())
+    public function setVariables(array $aVariables)
     {
         if (!is_array($aVariables)) {
             throw new \Exception('Le paramètre doit être un array.');

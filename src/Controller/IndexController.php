@@ -32,16 +32,6 @@ class IndexController extends AuthentificationController
      */
     public function indexAction()
     {
-        $atest = array(1, 2, 3, 'quatre');
-        $u = 10;
-        $dra = 'test';
-
-        $this->setVariables(array(
-            'test' => $atest,
-            'dra' => $dra,
-            'u' => $u
-        ));
-
         return $this->render();
     }
 }
