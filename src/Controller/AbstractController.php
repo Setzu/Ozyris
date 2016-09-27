@@ -13,41 +13,12 @@ use Ozyris\Service\SessionManager;
 
 abstract class AbstractController extends SessionManager implements ControllerInterface
 {
-    private $_controllerName = 'index';
-    private $_actionName = 'index';
+
     protected $aVariables = array();
 
     public function __construct()
     {
         parent::__construct();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getControllerName()
-    {
-        $sControllerName = (string) strtolower(trim(htmlspecialchars($_GET['controller'])));
-
-        if (!empty($sControllerName)) {
-            $this->_controllerName = $sControllerName;
-        }
-
-        return $this->_controllerName;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getActionName()
-    {
-        $sActionName = (string) strtolower(trim(htmlspecialchars($_GET['action'])));
-
-        if (!empty($sActionName)) {
-            $this->_actionName = $sActionName;
-        }
-
-        return $this->_actionName;
     }
 
     /**
@@ -70,7 +41,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
     }
 
     /**
-     * Inclusion des vues dans le layout
+     * Récupère les paramètres Controller et Action de l'url pour afficher les vues associées
      *
      * @return mixed
      */

@@ -7,16 +7,18 @@
  */
 
 try {
-    include_once __DIR__ . '/config/config.php';
-    include_once __DIR__ . '/view/layout/layout.php';
+    include_once __DIR__ . '/../config/config.php';
+    include_once __DIR__ . '/../view/layout/layout.php';
 } catch(\Exception $e) { ?>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="page-not-fount">
                     <h3 class="page-not-found">
+                        <!-- @TODO : à décommenter en cas de MEP : -->
 <!--                        Une erreur s'est produite, merci de réessayer ultérieurement.-->
-                        <?php  echo $e->getMessage(); ?>
+                        <!-- @TODO : à commenter en cas de MEP : -->
+                        <?php echo $e->getMessage(); ?>
                     </h3>
                 </div>
                 <a href="" class="btn btn-danger btn-retour" style="float: right;">Retour</a>
@@ -28,4 +30,3 @@ try {
     exit;
 }
 ?>
-

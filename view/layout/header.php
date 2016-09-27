@@ -10,7 +10,7 @@ if ($oIndexController->isAuthentified) { ?>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-5">
+            <div class="col-md-offset-6">
                 <form class="form-inline" action="/authentification/disconect" method="post" role="form" id="login-form">
 
                     <div class="form-group">

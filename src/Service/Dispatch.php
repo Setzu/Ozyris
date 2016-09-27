@@ -12,6 +12,8 @@ use Ozyris\Controller;
 
 class Dispatch
 {
+    private $_controllerName = 'index';
+    private $_actionName = 'index';
 
     /**
      * Détermine le controller et l'action à appeler selon l'url
@@ -22,33 +24,50 @@ class Dispatch
      */
     public function dispatch()
     {
-        $sControllerName = (string) ucfirst(strtolower(trim(htmlspecialchars($_GET['controller']))));
+        $sControllerName = 'Ozyris\\Controller\\' . $this->getControllerName();
+        $sActionName = $this->getActionName();
 
-        if (empty($sControllerName)) {
-            $sControllerName = 'IndexController';
-        } else {
-            $sControllerName .= 'Controller';
-        }
-
-        $sActionName = (string) strtolower(trim(htmlspecialchars($_GET['action'])));
-
-        if (empty($sActionName)) {
-            $sActionName = 'indexAction';
-        } else {
-            $sActionName .= 'Action';
-        }
-
-        if (class_exists('Ozyris\\Controller\\' . $sControllerName)) {
-            if (!method_exists('Ozyris\\Controller\\' . $sControllerName, $sActionName)) {
+        if (class_exists($sControllerName)) {
+            if (!method_exists($sControllerName, $sActionName . 'Action')) {
                 $sActionName = 'indexAction';
             }
         } else {
-            $sControllerName = 'IndexController';
+            $sControllerName = 'Ozyris\\Controller\\IndexController';
             $sActionName = 'indexAction';
         }
 
-        $sController = 'Ozyris\\Controller\\' . $sControllerName;
+        return (new $sControllerName)->$sActionName();
+    }
 
-        return (new $sController)->$sActionName();
+    /**
+     * @return string
+     */
+    protected function getControllerName()
+    {
+        $sControllerName = (string) strtolower(trim(htmlspecialchars($_GET['controller'])));
+
+        if (!empty($sControllerName)) {
+            $this->_controllerName = $sControllerName;
+        } else {
+            $this->_controllerName = 'index';
+        }
+
+        return $this->_controllerName;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getActionName()
+    {
+        $sActionName = (string) strtolower(trim(htmlspecialchars($_GET['action'])));
+
+        if (!empty($sActionName)) {
+            $this->_actionName = $sActionName;
+        } else {
+            $this->_actionName = 'index';
+        }
+
+        return $this->_actionName;
     }
 }

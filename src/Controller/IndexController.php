@@ -15,6 +15,9 @@ class IndexController extends AuthentificationController
 
     public $oUser;
 
+    /**
+     * IndexController constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -26,8 +29,6 @@ class IndexController extends AuthentificationController
     }
 
     /**
-     * Récupère le paramètre de l'url pour charger la vue associée
-     *
      * @return mixed
      */
     public function indexAction()
