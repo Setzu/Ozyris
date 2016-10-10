@@ -19,13 +19,6 @@ class ComposerStaticInitc0272639340e5300bffcd2831c9f4325
         array (
             'Symfony\\Component\\Yaml\\' => 23,
         ),
-        'O' => 
-        array (
-            'Ozyris\\Validator\\' => 17,
-            'Ozyris\\Service\\' => 15,
-            'Ozyris\\Model\\' => 13,
-            'Ozyris\\Controller\\' => 18,
-        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -48,22 +41,6 @@ class ComposerStaticInitc0272639340e5300bffcd2831c9f4325
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'Ozyris\\Validator\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src/Validator',
-        ),
-        'Ozyris\\Service\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src/Service',
-        ),
-        'Ozyris\\Model\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src/Model',
-        ),
-        'Ozyris\\Controller\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src/Controller',
-        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -80,6 +57,13 @@ class ComposerStaticInitc0272639340e5300bffcd2831c9f4325
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+        ),
+        'O' => 
+        array (
+            'Ozyris\\' => 
+            array (
+                0 => __DIR__ . '/../..' . '/src',
             ),
         ),
     );

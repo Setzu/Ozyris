@@ -8,7 +8,7 @@
 
 try {
     include_once __DIR__ . '/../config/config.php';
-    include_once __DIR__ . '/../view/layout/layout.php';
+    include_once __DIR__ . '/../src/Ozyris/View/layout/layout.php';
 } catch(\Exception $e) { ?>
     <div class="container">
         <div class="row">

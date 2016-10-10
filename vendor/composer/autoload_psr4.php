@@ -9,10 +9,6 @@ return array(
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-docblock/src'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
-    'Ozyris\\Validator\\' => array($baseDir . '/src/Validator'),
-    'Ozyris\\Service\\' => array($baseDir . '/src/Service'),
-    'Ozyris\\Model\\' => array($baseDir . '/src/Model'),
-    'Ozyris\\Controller\\' => array($baseDir . '/src/Controller'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
 );

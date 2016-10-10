@@ -8,7 +8,7 @@
 
 namespace Ozyris\Validator;
 
-use Ozyris\Service\ValidatorInterface;
+use Ozyris\Stdlib\ValidatorInterface;
 
 class EmailValidator implements ValidatorInterface
 {

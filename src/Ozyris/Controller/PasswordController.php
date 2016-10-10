@@ -80,6 +80,9 @@ class PasswordController extends AbstractController
         return $this->render();
     }
 
+    /**
+     * @return $this
+     */
     public function resetpasswordAction()
     {
         // On verifie qu'un paramètre est présent dans l'url

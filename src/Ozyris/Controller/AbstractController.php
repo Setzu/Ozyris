@@ -8,32 +8,33 @@
 
 namespace Ozyris\Controller;
 
-use Ozyris\Service\ControllerInterface;
 use Ozyris\Service\SessionManager;
+use Ozyris\Stdlib\ControllerInterface;
 
 abstract class AbstractController extends SessionManager implements ControllerInterface
 {
 
     protected $aVariables = array();
 
+    /**
+     * AbstractController constructor.
+     */
     public function __construct()
     {
         parent::__construct();
     }
 
     /**
+     * Crée une propriété pour chaques valeurs du tableau $aVariables
+     *
      * @param array $aVariables
      * @throws \Exception
      */
     public function setVariables(array $aVariables)
     {
-        if (!is_array($aVariables)) {
-            throw new \Exception('Le paramètre doit être un array.');
-        }
-
         foreach ($aVariables as $sName => $mValue) {
             if (!is_string($sName)) {
-                throw new \Exception('Le paramètre doit être une chaîne de caractères.');
+                throw new \Exception('La clé doit être une chaîne de caractères.');
             }
 
             $this->{$sName} = $mValue;
@@ -47,20 +48,22 @@ abstract class AbstractController extends SessionManager implements ControllerIn
      */
     public function render()
     {
-        $sDirectoryPath = __DIR__ . '/../../view/' . $this->getControllerName();
+        $sDirectoryPath = __DIR__ . '/../View/' . $this->getControllerName();
 
+        // Contrôle de l'existence du repertoire
         if (!file_exists($sDirectoryPath) || empty($sDirectoryPath)) {
-            include_once __DIR__ . '/../../view/error/404.php';
+            include_once __DIR__ . '/../View/error/404.php';
 
             return false;
         }
 
         $sFilePath = $sDirectoryPath . '/' . $this->getActionName() . '.php';
 
+        // Contrôle de l'existence du fichier
         if (file_exists($sFilePath)) {
             include_once $sFilePath;
         } else {
-            include_once __DIR__ . '/../../view/error/404.php';
+            include_once __DIR__ . '/../View/error/404.php';
         }
 
         return $this;

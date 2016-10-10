@@ -6,7 +6,7 @@
  * Time: 10:47
  */
 
-namespace Ozyris\Service;
+namespace Ozyris\Stdlib;
 
 interface ControllerInterface
 {

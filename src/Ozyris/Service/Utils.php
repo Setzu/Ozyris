@@ -12,6 +12,8 @@ class Utils
 {
 
     /**
+     * Execute un var_dump
+     *
      * @param mixed $value
      * @param bool $die
      */
@@ -26,6 +28,8 @@ class Utils
     }
 
     /**
+     * Liste toutes les méthodes d'une classe
+     *
      * @param object $classname
      */
     public static function getAllClassMethod($classname)

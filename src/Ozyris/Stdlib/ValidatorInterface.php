@@ -6,15 +6,15 @@
  * Time: 15:45
  */
 
-namespace Ozyris\Service;
+namespace Ozyris\Stdlib;
 
 interface ValidatorInterface
 {
 
     /**
-     * @param mixed $value
+     * @param mixed $form
      * @return mixed
      */
-    public function isValid($value);
+    public function isValid($form);
 
 }

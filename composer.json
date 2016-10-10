@@ -10,11 +10,8 @@
     }
   ],
   "autoload": {
-    "psr-4": {
-      "Ozyris\\Controller\\": "src/Controller/",
-      "Ozyris\\Model\\": "src/Model/",
-      "Ozyris\\Service\\": "src/Service/",
-      "Ozyris\\Validator\\": "src/Validator/"
+    "psr-0": {
+      "Ozyris\\": "src/"
     }
   },
   "require": {}

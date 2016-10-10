@@ -18,7 +18,7 @@ abstract class SessionManager extends Dispatch
     const SUCCESS = 'success';
 
     /**
-     * Démarre la session
+     * SessionManager constructor.
      */
     public function __construct()
     {
@@ -27,6 +27,8 @@ abstract class SessionManager extends Dispatch
 
 
     /**
+     * Démarre la session
+     *
      * @return $this
      */
     public function startSession()
@@ -40,6 +42,8 @@ abstract class SessionManager extends Dispatch
     }
 
     /**
+     * Détruit la clé $param en session, si null, détruit toute la session
+     *
      * @param null $param
      * @return $this
      */
@@ -55,6 +59,8 @@ abstract class SessionManager extends Dispatch
     }
 
     /**
+     * Stocke les flashmessages en session
+     *
      * @param $message
      * @param bool|true $error
      * @return $this
