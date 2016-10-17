@@ -42,7 +42,7 @@ class AuthentificationController extends AbstractController
 
             $oUser = new Users($aDonneesUser);
 
-            $_SESSION['user'] = $oUser;
+            $this->setSessionValue('user', $oUser);
             $this->isAuthentified = true;
 
             return $this->redirect();
@@ -79,7 +79,7 @@ class AuthentificationController extends AbstractController
             }
 
             $this->startSession();
-            $_SESSION['email'] = $sUserEmail;
+            $this->setSessionValue('email', $sUserEmail);
 
             $sUsername = (string) htmlspecialchars(trim($_POST['username']));
             $oStandarValidator = new StandardValidator();

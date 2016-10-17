@@ -12,6 +12,7 @@ abstract class SessionManager extends Dispatch
 {
 
     public $aFlashMessages = array();
+    protected $mSession;
 
     const FLASH_MESSAGE = 'flashmessage';
     const DANGER = 'danger';
@@ -24,7 +25,6 @@ abstract class SessionManager extends Dispatch
     {
         $this->startSession();
     }
-
 
     /**
      * Démarre la session
@@ -42,15 +42,47 @@ abstract class SessionManager extends Dispatch
     }
 
     /**
-     * Détruit la clé $param en session, si null, détruit toute la session
+     * @param $key
+     * @param $value
+     */
+    protected function setSessionValue($key, $value)
+    {
+        $_SESSION[(string) $key] = $value;
+        $this->mSession = $_SESSION[$key];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSession()
+    {
+        return $this->mSession;
+    }
+
+    /**
+     * @param $key
+     * @return null
+     */
+    public function getSessionValue($key)
+    {
+        if (array_key_exists($key, $this->mSession)) {
+            return $this->mSession[$key];
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Détruit la clé $key en session.
+     * Si $key vaut null, détruit toute la session
      *
-     * @param null $param
+     * @param null $key
      * @return $this
      */
-    public function destroySession($param = null)
+    public function destroySession($key = null)
     {
-        if ($param) {
-            unset($_SESSION[$param]);
+        if (array_key_exists($key, $_SESSION)) {
+            unset($_SESSION[$key]);
         } else {
             session_destroy();
         }

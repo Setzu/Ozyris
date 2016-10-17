@@ -12,9 +12,8 @@ use Ozyris\Controller;
 
 class Dispatch
 {
-    private $_sControllerName = 'indexController';
+    private $_sControllerName = 'IndexController';
     private $_sActionName = 'indexAction';
-    private $_sNamespace = 'Ozyris\\Controller\\';
 
     /**
      * Détermine le controller et l'action à appeler selon l'url
@@ -25,14 +24,14 @@ class Dispatch
      */
     public function dispatch()
     {
-        if (isset($_GET['controller'])) {
-            $this->setControllerName($_GET['controller']);
+        if (!empty($_GET['controller'])) {
+            $this->setControllerName(ucfirst(strtolower(trim(htmlspecialchars($_GET['controller'])))));
         }
 
-        $sControllerName = $this->_sNamespace . $this->getControllerName();
+        $sControllerName = 'Ozyris\\Controller\\' . $this->getControllerName();
 
-        if (isset($_GET['action'])) {
-            $this->setActionName($_GET['action']);
+        if (!empty($_GET['action'])) {
+            $this->setActionName(ucfirst(strtolower(trim(htmlspecialchars($_GET['action'])))));
         }
 
         $sActionName = $this->getActionName();
@@ -58,7 +57,6 @@ class Dispatch
      */
     protected function setControllerName($sControllerName)
     {
-        $sControllerName = strtolower(trim(htmlspecialchars($sControllerName)));
         $this->_sControllerName = $sControllerName . 'Controller';
 
         return $this;

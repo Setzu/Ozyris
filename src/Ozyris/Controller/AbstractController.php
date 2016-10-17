@@ -15,6 +15,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
 {
 
     protected $aVariables = array();
+    protected $sView;
 
     /**
      * AbstractController constructor.
@@ -48,7 +49,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
      */
     public function render()
     {
-        $sDirectoryPath = __DIR__ . '/../View/' . $this->getControllerName();
+        $sDirectoryPath = __DIR__ . '/../View/' . strtolower(str_replace('Controller', '', $this->getControllerName()));
 
         // Contrôle de l'existence du repertoire
         if (!file_exists($sDirectoryPath) || empty($sDirectoryPath)) {
@@ -57,7 +58,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
             return false;
         }
 
-        $sFilePath = $sDirectoryPath . '/' . $this->getActionName() . '.php';
+        $sFilePath = $sDirectoryPath . '/' . str_replace('Action', '', $this->getActionName() . '.php');
 
         // Contrôle de l'existence du fichier
         if (file_exists($sFilePath)) {

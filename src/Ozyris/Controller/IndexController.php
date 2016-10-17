@@ -35,4 +35,5 @@ class IndexController extends AuthentificationController
     {
         return $this->render();
     }
+
 }
