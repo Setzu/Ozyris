@@ -9,8 +9,9 @@
 namespace Ozyris\Service;
 
 use Ozyris\Controller;
+use Ozyris\Stdlib\DispatchInterface;
 
-class Dispatch
+class Dispatch implements DispatchInterface
 {
     private $_sControllerName = 'IndexController';
     private $_sActionName = 'indexAction';
@@ -55,7 +56,7 @@ class Dispatch
      * @param string $sControllerName
      * @return $this
      */
-    protected function setControllerName($sControllerName)
+    public function setControllerName($sControllerName)
     {
         $this->_sControllerName = $sControllerName . 'Controller';
 
@@ -78,7 +79,7 @@ class Dispatch
      * @param string $sActionName
      * @return $this
      */
-    protected function setActionName($sActionName)
+    public function setActionName($sActionName)
     {
         $sActionName = strtolower(trim(htmlspecialchars($sActionName)));
         $this->_sActionName = $sActionName . 'Action';
