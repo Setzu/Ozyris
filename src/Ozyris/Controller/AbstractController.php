@@ -26,7 +26,8 @@ abstract class AbstractController extends SessionManager implements ControllerIn
     }
 
     /**
-     * Crée une propriété pour chaques valeurs du tableau $aVariables
+     * Crée une propriété pour chacunes des valeurs du tableau $aVariables
+     * Le nom des propriétés seront égales aux clés du tableau $aVariables
      *
      * @param array $aVariables
      * @throws \Exception
@@ -43,6 +44,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
     }
 
     /**
+     * @TODO : modifier la façon de récupérer le nom du controlleur, car à ce niveau la classe Dispatch n'est pas instanciée
      * Récupère les paramètres Controller et Action de l'url pour afficher les vues associées
      *
      * @return mixed

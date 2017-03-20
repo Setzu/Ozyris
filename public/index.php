@@ -6,6 +6,9 @@
  * Time: 12:07
  */
 
+/**
+ * On inclue le fichier de configuration du projet dans un bloc try catch pour récupérer toutes les exceptions
+ */
 try {
     include_once __DIR__ . '/../config/config.php';
     include_once __DIR__ . '/../src/Ozyris/View/layout/layout.php';
@@ -15,9 +18,9 @@ try {
             <div class="col-md-8 col-md-offset-2">
                 <div class="page-not-fount">
                     <h3 class="page-not-found">
-                        <!-- @TODO : à décommenter en cas de MEP : -->
+                        <!-- @TODO : à décommenter sur environnement de prod : -->
 <!--                        Une erreur s'est produite, merci de réessayer ultérieurement.-->
-                        <!-- @TODO : à commenter en cas de MEP : -->
+                        <!-- @TODO : à commenter sur environnement de dev : -->
                         <?php echo $e->getMessage(); ?>
                     </h3>
                 </div>
@@ -26,7 +29,4 @@ try {
         </div>
     </div>
 
-    <?php
-    exit;
-}
-?>
+<?php } ?>

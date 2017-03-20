@@ -15,16 +15,20 @@ abstract class AbstractModel
 
     /**
      * ConnectionPDO constructor.
-     * @param string $dsn
+     * @param string $dbname
+     * @param string $host
      * @param string $user
      * @param string $password
+     * @throws \Exception
      */
-    public function __construct($dsn = '', $user = '', $password = '')
+    public function __construct($dbname = '', $host = '' , $user = '', $password = '')
     {
-        /* Connexion à une base ODBC avec l'invocation de pilote */
-
-        if (empty($dsn) || !is_string($dsn)) {
-            $dsn = 'mysql:dbname=test;host=localhost';
+        // Connexion à une base ODBC
+        if (empty($user) || !is_string($user)) {
+            $dbname = 'demo';
+        }
+        if (empty($password) || !is_string($password)) {
+            $host = 'localhost';
         }
         if (empty($user) || !is_string($user)) {
             $user = 'root';
@@ -33,10 +37,12 @@ abstract class AbstractModel
             $password = 'gfp';
         }
 
-        try {
-            $this->bdd = new \PDO($dsn, $user, $password);
-        } catch (\PDOException $e) {
-            echo 'Connexion échouée : ' . $e->getMessage();
+        $dsn = 'mysql:dbname=' . $dbname . ';host=' . $host;
+
+        $this->bdd = new \PDO($dsn, $user, $password);
+
+        if (!$this->bdd) {
+            throw new \Exception('Connexion à la base de donnée impossible.');
         }
     }
 }
