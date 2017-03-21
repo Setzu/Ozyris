@@ -17,6 +17,9 @@ abstract class AbstractController extends SessionManager implements ControllerIn
     protected $aVariables = array();
     protected $sView;
 
+    const DEFAULT_DIRECTORY = 'index';
+    const DEFAULT_VIEW = 'index';
+
     /**
      * AbstractController constructor.
      */
@@ -28,6 +31,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
     /**
      * Crée une propriété pour chacunes des valeurs du tableau $aVariables
      * Le nom des propriétés seront égales aux clés du tableau $aVariables
+     * Les variables seront accessibles dans les vues avec $this->nom_variable
      *
      * @param array $aVariables
      * @throws \Exception
@@ -44,29 +48,36 @@ abstract class AbstractController extends SessionManager implements ControllerIn
     }
 
     /**
-     * @TODO : modifier la façon de récupérer le nom du controlleur, car à ce niveau la classe Dispatch n'est pas instanciée
-     * Récupère les paramètres Controller et Action de l'url pour afficher les vues associées
+     * Récupère les paramètres pour afficher la vue associée
      *
+     * @param string $directory
+     * @param string $view
      * @return mixed
      */
-    public function render()
+    public function render($directory = '', $view = '')
     {
-        $sDirectoryPath = __DIR__ . '/../View/' . strtolower(str_replace('Controller', '', $this->getControllerName()));
+        if (empty($directory) || !is_string($directory)) {
+            $directory = self::DEFAULT_DIRECTORY;
+        }
+
+        if (empty($view) || !is_string($view)) {
+            $view = self::DEFAULT_VIEW;
+        }
+
+        $sDirectoryPath = __DIR__ . '/../View/' . $directory;
 
         // Contrôle de l'existence du repertoire
         if (!file_exists($sDirectoryPath) || empty($sDirectoryPath)) {
-            include_once __DIR__ . '/../View/error/404.php';
-
-            return false;
+            return $this->getErrorPage();
         }
 
-        $sFilePath = $sDirectoryPath . '/' . str_replace('Action', '', $this->getActionName() . '.php');
+        $sFilePath = $sDirectoryPath . '/' . $view . '.php';
 
         // Contrôle de l'existence du fichier
         if (file_exists($sFilePath)) {
             include_once $sFilePath;
         } else {
-            include_once __DIR__ . '/../View/error/404.php';
+            return $this->getErrorPage();
         }
 
         return $this;
@@ -77,7 +88,6 @@ abstract class AbstractController extends SessionManager implements ControllerIn
      *
      * @param string $controller
      * @param string $action
-     * @return $this
      */
     public function redirect($controller = '', $action = '')
     {
@@ -91,5 +101,19 @@ abstract class AbstractController extends SessionManager implements ControllerIn
             header('Location: /' . $sControllerName);
             exit;
         }
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    public function getErrorPage()
+    {
+        if (!file_exists(__DIR__ . '/../View/error/404.php')) {
+            // Alors ça c'est le comble \ö/
+            throw new \Exception('La page 404 est introuvable.');
+        }
+
+        return __DIR__ . '/../View/error/404.php';
     }
 }

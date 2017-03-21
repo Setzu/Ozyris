@@ -1,8 +1,19 @@
+body {
+    width: 100%;
+    height: 100%;
+    /*background-attachment: fixed;*/
+    /*background: #00BCFF; !* For browsers that do not support gradients *!*/
+    /*background: -webkit-linear-gradient(#00BCFF, #FFFFFF); !* For Safari 5.1 to 6.0 *!*/
+    /*background: -o-linear-gradient(#00BCFF, #FFFFFF); !* For Opera 11.1 to 12.0 *!*/
+    /*background: -moz-linear-gradient(#00BCFF, #FFFFFF); !* For Firefox 3.6 to 15 *!*/
+    /*background: linear-gradient(#00BCFF, #FFFFFF); !* Standard syntax *!*/
+}
+.bandeau {
+    background-color: #dddddd;
+}
 .page-not-found {
     width: 100%;
     min-height: 200px;
-    border: 2px solid red;
-    background: #FFFFFF;
     text-align: center;
     margin-top: 100px;
     margin-left: auto;
@@ -12,14 +23,6 @@
 .page-not-found > h3 {
     color: #000000;
 }
-
-body {
-    width: 100%;
-    height: 100%;
-    background-attachment: fixed;
-    background: #00BCFF; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#00BCFF, #FFFFFF); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#00BCFF, #FFFFFF); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#00BCFF, #FFFFFF); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#00BCFF, #FFFFFF); /* Standard syntax */
+a:hover {
+    text-decoration: none;
 }

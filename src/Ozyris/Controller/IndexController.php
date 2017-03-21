@@ -36,4 +36,9 @@ class IndexController extends AuthentificationController
         return $this->render();
     }
 
+    public function errorAction()
+    {
+        return $this->render('error', '404');
+    }
+
 }

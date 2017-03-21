@@ -8,7 +8,7 @@
 
 namespace Ozyris\Service;
 
-abstract class SessionManager extends Dispatch
+abstract class SessionManager
 {
 
     public $aFlashMessages = array();
@@ -111,7 +111,7 @@ abstract class SessionManager extends Dispatch
     }
 
     /**
-     * Affiche le message selon le type. Et détruit la session flashmessage
+     * Affiche le message selon le type, et appelle la méthode destroySession
      *
      * @return SessionManager
      */

@@ -15,17 +15,19 @@ $oIndexController = new IndexController();
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../public/css/layout.css">
-    <link rel="stylesheet" href="../../public/css/header.css">
-    <link rel="stylesheet" href="../../public/css/form.css">
-    <link rel="stylesheet" href="../../public/css/element.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../../../../public/css/layout.css">
+    <link rel="stylesheet" href="../../../../public/css/header.css">
+    <link rel="stylesheet" href="../../../../public/css/form.css">
+    <link rel="stylesheet" href="../../../../public/css/element.css">
 </head>
 
 <body>
 
 <header>
-    <?php include_once (__DIR__ . '/header.php'); ?>
+    <div class="container">
+        <?php include_once (__DIR__ . '/header.php'); ?>
+    </div>
 </header>
 
 <div class="container">
@@ -35,7 +37,7 @@ $oIndexController = new IndexController();
         </div>
     </div>
     <div class="row">
-        <?php $oIndexController->dispatch(); ?>
+        <?php \Ozyris\Service\Dispatch::dispatch(); ?>
     </div>
 </div>
 

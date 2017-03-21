@@ -20,7 +20,7 @@ class AuthentificationController extends AbstractController
     public $isAuthentified = false;
 
     /**
-     * Connecte l'utilisateur, stocke l'objet Users en session, puis on redirige sur l'accueil
+     * Connecte l'utilisateur, stocke l'objet Users en session, puis redirige sur l'accueil
      *
      * @return $this|bool
      */
@@ -48,11 +48,11 @@ class AuthentificationController extends AbstractController
             return $this->redirect();
         }
 
-        return $this->render();
+        return $this->render('authentification', 'index');
     }
 
     /**
-     * Créer un nouvel utilisateur, stocke l'objet Users en session puis redirige sur l'accueil
+     * Créée un nouvel utilisateur, stocke l'objet Users en session puis redirige sur l'accueil
      *
      * @return $this
      */
@@ -126,7 +126,7 @@ class AuthentificationController extends AbstractController
             return $this->redirect();
         }
 
-        return $this->render();
+        return $this->render('authentification', 'registration');
     }
 
     /**
