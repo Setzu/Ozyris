@@ -8,6 +8,7 @@
 
 namespace Ozyris\Controller;
 
+use Ozyris\Service\AssetManager;
 use Ozyris\Service\Users;
 
 class IndexController extends AuthentificationController
@@ -35,10 +36,4 @@ class IndexController extends AuthentificationController
     {
         return $this->render();
     }
-
-    public function errorAction()
-    {
-        return $this->render('error', '404');
-    }
-
 }

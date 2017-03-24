@@ -42,10 +42,10 @@ class PasswordController extends AbstractController
 
             $token = base64_encode($aDonneesUser['email'] . $aDonneesUser['id'] . date('Y-m-d H:i:s'));
             $oModelUser->resetPasswordByToken($aDonneesUser['id'], $aDonneesUser['email'], $token);
-            $sUrl = "http://" . $_SERVER['HTTP_HOST'] . "/resetpassword/" . $token;
+            $sUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/resetpassword/' . $token;
 
-            $sMessage = "Content-Type: text/html; charset=\"UTF-8\"";
-            $sMessage .= "Content-Transfer-Encoding: 8bit";
+            $sMessage = 'Content-Type: text/html; charset="UTF-8"';
+            $sMessage .= 'Content-Transfer-Encoding: 8bit';
             $sMessage .= "
             <html>
                 <head>
@@ -61,10 +61,10 @@ class PasswordController extends AbstractController
 
             $sSujet = 'Demande de réinitialisation du mot de passe.';
 
-            $headers  = "MIME-Version: 1.0" . "\r\n";
-            $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
-            $headers .= "To: " . $aDonneesUser['username'] . ' ' . $sUserEmail  . "\r\n";
-            $headers .= "From: no reply no-reply@noreply.com\r\n";
+            $headers  = 'MIME-Version: 1.0' . '\r\n';
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . '\r\n';
+            $headers .= 'To: ' . $aDonneesUser['username'] . ' ' . $sUserEmail  . '\r\n';
+            $headers .= 'From: no reply no-reply@noreply.com\r\n';
 
             $oMailer = new Mailer();
             $oMailer->sendMail($sUserEmail, $sSujet, $sMessage, $headers);
@@ -77,13 +77,13 @@ class PasswordController extends AbstractController
             return $this->redirect();
         }
 
-        return $this->render();
+        return $this->render('password');
     }
 
     /**
      * @return $this
      */
-    public function resetpasswordAction()
+    public function resetPasswordAction()
     {
         // On verifie qu'un paramètre est présent dans l'url
         if (!empty($_GET['param'])) {
@@ -114,7 +114,7 @@ class PasswordController extends AbstractController
     /**
      * @return $this|bool
      */
-    public function changepasswordAction()
+    public function changePasswordAction()
     {
         if ($_POST) {
             // On vérifie que l'utilisateur à bien la clé reset-password en session
@@ -152,6 +152,6 @@ class PasswordController extends AbstractController
             return $this->redirect();
         }
 
-        return $this->render();
+        return $this->render('password', 'changepassword');
     }
 }

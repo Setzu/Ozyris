@@ -11,7 +11,7 @@ if ($this->isAuthentified) { ?>
     <div class="container">
         <div class="row">
             <div class="col-md-offset-6">
-                <form class="form-inline" action="/authentification/disconect" method="post" role="form" id="login-form">
+                <form class="form-inline" action="/authentification/disconnect" method="post" role="form" id="login-form">
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Se deconnecter</button>

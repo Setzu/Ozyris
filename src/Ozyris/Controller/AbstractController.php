@@ -8,6 +8,7 @@
 
 namespace Ozyris\Controller;
 
+use Ozyris\Service\AssetManager;
 use Ozyris\Service\SessionManager;
 use Ozyris\Stdlib\ControllerInterface;
 
@@ -20,13 +21,6 @@ abstract class AbstractController extends SessionManager implements ControllerIn
     const DEFAULT_DIRECTORY = 'index';
     const DEFAULT_VIEW = 'index';
 
-    /**
-     * AbstractController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Crée une propriété pour chacunes des valeurs du tableau $aVariables
@@ -36,25 +30,27 @@ abstract class AbstractController extends SessionManager implements ControllerIn
      * @param array $aVariables
      * @throws \Exception
      */
-    public function setVariables(array $aVariables)
+    protected function setVariables(array $aVariables)
     {
         foreach ($aVariables as $sName => $mValue) {
             if (!is_string($sName)) {
                 throw new \Exception('La clé doit être une chaîne de caractères.');
             }
 
+            // Création dynamique de la priopriété
             $this->{$sName} = $mValue;
         }
     }
 
     /**
-     * Récupère les paramètres pour afficher la vue associée
+     * Affichage de la vue en fonction des paramètres
      *
      * @param string $directory
      * @param string $view
      * @return mixed
+     * @throws \Exception
      */
-    public function render($directory = '', $view = '')
+    protected function render($directory = '', $view = '')
     {
         if (empty($directory) || !is_string($directory)) {
             $directory = self::DEFAULT_DIRECTORY;
@@ -64,20 +60,13 @@ abstract class AbstractController extends SessionManager implements ControllerIn
             $view = self::DEFAULT_VIEW;
         }
 
-        $sDirectoryPath = __DIR__ . '/../View/' . $directory;
-
-        // Contrôle de l'existence du repertoire
-        if (!file_exists($sDirectoryPath) || empty($sDirectoryPath)) {
-            return $this->getErrorPage();
-        }
-
-        $sFilePath = $sDirectoryPath . '/' . $view . '.php';
+        $sFilePath = __DIR__ . '/../View/' . $directory . '/' . $view . '.php';
 
         // Contrôle de l'existence du fichier
         if (file_exists($sFilePath)) {
-            include_once $sFilePath;
+            require_once $sFilePath;
         } else {
-            return $this->getErrorPage();
+            throw new \Exception('Le fichier ' . $sFilePath . ' n\'a pas été trouvé.');
         }
 
         return $this;
@@ -89,7 +78,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
      * @param string $controller
      * @param string $action
      */
-    public function redirect($controller = '', $action = '')
+    protected function redirect($controller = '', $action = '')
     {
         $sControllerName = (string) strtolower(trim($controller));
         $sActionName = (string) strtolower(trim($action));
@@ -104,16 +93,56 @@ abstract class AbstractController extends SessionManager implements ControllerIn
     }
 
     /**
+     * Appelle méthode _loadAsset pour récupérer le service AssetManager
+     * Il n'est pas nécessaire de spécifier l'extension dans le nom du fichier
+     *
+     * @param string $file
+     * @return bool
+     */
+    public function loadCSS($file)
+    {
+        $oAssetManager = $this->_getAssetManager();
+
+        return $oAssetManager->loadCSS($file);
+    }
+
+    /**
+     * Appelle méthode _loadAsset pour récupérer le service AssetManager
+     * Il n'est pas nécessaire de spécifier l'extension dans le nom du fichier
+     *
+     * @param string $file
+     * @return bool
+     */
+    public function loadJS($file)
+    {
+        $oAssetManager = $this->_getAssetManager();
+
+        return $oAssetManager->loadJS($file);
+    }
+
+    /**
+     * Contrôle le paramètre et récupère l'objet AssetManager
+     *
+     * @return object AssetManager
+     */
+    private function _getAssetManager()
+    {
+        return new AssetManager();
+    }
+
+    /**
+     * Appelle la méthode render avec les paramètres de la page 404
+     *
      * @return string
      * @throws \Exception
      */
-    public function getErrorPage()
+    protected function pageNotFound()
     {
         if (!file_exists(__DIR__ . '/../View/error/404.php')) {
             // Alors ça c'est le comble \ö/
             throw new \Exception('La page 404 est introuvable.');
         }
 
-        return __DIR__ . '/../View/error/404.php';
+        return $this->render('error', '404');
     }
 }

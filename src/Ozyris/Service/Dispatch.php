@@ -31,9 +31,9 @@ class Dispatch
 
         $sControllerName = 'Ozyris\\Controller\\' . $sController;
 
-        // Si la classe n'existe pas on appel la méthode errorAction de l'indexController pour afficher une 404
+        // Si la classe n'existe pas on affiche une 404
         if (!class_exists($sControllerName)) {
-            return (new Controller\IndexController())->errorAction();
+            return (new Controller\IndexController())->pageNotFound();
         }
 
         // Récupère le nom de l'action dans l'url
@@ -43,9 +43,9 @@ class Dispatch
             $sActionName = self::DEFAULT_ACTION;
         }
 
-        // Si la méthode n'existe pas on appel la méthode errorAction de l'indexController pour afficher une 404
+        // Si la méthode n'existe pas on affiche une 404
         if (!method_exists($sControllerName, $sActionName)) {
-            return (new Controller\IndexController())->errorAction();
+            return (new Controller\IndexController())->pageNotFound();
         }
 
         return (new $sControllerName)->$sActionName();

@@ -8,7 +8,9 @@
 
 namespace Ozyris\Validator;
 
-class StandardValidator
+use Ozyris\Stdlib\ValidatorInterface;
+
+class StandardValidator // implements ValidatorInterface
 {
     const IS_EMPTY = "ChampVide";
     const TOO_LONG = "ChampTropLong";
@@ -80,5 +82,13 @@ class StandardValidator
         );
 
         return $errorMessage;
+    }
+
+    /**
+     * @param $value
+     */
+    public function isValid($value)
+    {
+        // @TODO : méthode à définir
     }
 }

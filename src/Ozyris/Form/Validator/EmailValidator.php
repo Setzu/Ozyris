@@ -8,11 +8,9 @@
 
 namespace Ozyris\Validator;
 
-use Ozyris\Stdlib\ValidatorInterface;
-
-class EmailValidator implements ValidatorInterface
+class EmailValidator extends StandardValidator
 {
-    const IS_EMPTY = "Vous devez saisir une adresse email.";
+    const IS_EMPTY = 'Vous devez saisir une adresse email.';
     const TOO_LONG = "L'adresse email ne doit pas dépasser 255 caractères.";
     const INVALID = "L'adresse email saisie n'est pas valide.";
 
@@ -24,18 +22,11 @@ class EmailValidator implements ValidatorInterface
      */
     public function isValid($value)
     {
+        parent::isValid($value);
         $sEmail = (string) htmlspecialchars(trim($value));
         $sEmailPattern = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-.]+[.][a-zA-Z0-9-]+$/";
 
-        if (empty($sEmail)) {
-            $this->errorMessage = self::IS_EMPTY;
-
-            return false;
-        } elseif(strlen($sEmail) > 255) {
-            $this->errorMessage = self::TOO_LONG;
-
-            return false;
-        } elseif (!preg_match($sEmailPattern, $sEmail)) {
+        if (!preg_match($sEmailPattern, $sEmail)) {
             $this->errorMessage = self::INVALID;
 
             return false;

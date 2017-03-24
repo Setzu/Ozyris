@@ -15,11 +15,11 @@ $oIndexController = new IndexController();
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
-    <link rel="stylesheet" href="../../../../public/css/layout.css">
-    <link rel="stylesheet" href="../../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../../public/css/form.css">
-    <link rel="stylesheet" href="../../../../public/css/element.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo __DIR__ . '/../../../../public/css/layout.css';?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo __DIR__ . '/../../../../public/css/header.css';?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo __DIR__ . '/../../../../public/css/form.css';?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo __DIR__ . '/../../../../public/css/element.css';?>">
 </head>
 
 <body>

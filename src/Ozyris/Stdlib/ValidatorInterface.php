@@ -12,9 +12,8 @@ interface ValidatorInterface
 {
 
     /**
-     * @param object $form
      * @return bool
      */
-    public function isValid($form);
+    public function isValid();
 
 }
