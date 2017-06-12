@@ -15,7 +15,7 @@ use Ozyris\Stdlib\ControllerInterface;
 abstract class AbstractController extends SessionManager implements ControllerInterface
 {
 
-    protected $aVariables = array();
+    protected $aVariables = [];
     protected $sView;
 
     const DEFAULT_DIRECTORY = 'index';
@@ -121,7 +121,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
     }
 
     /**
-     * Contrôle le paramètre et récupère l'objet AssetManager
+     * Récupère l'objet AssetManager
      *
      * @return object AssetManager
      */
@@ -136,7 +136,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
      * @return string
      * @throws \Exception
      */
-    protected function pageNotFound()
+    public function pageNotFound()
     {
         if (!file_exists(__DIR__ . '/../View/error/404.php')) {
             // Alors ça c'est le comble \ö/

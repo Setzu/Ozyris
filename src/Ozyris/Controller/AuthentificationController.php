@@ -42,7 +42,7 @@ class AuthentificationController extends AbstractController
 
             $oUser = new Users($aDonneesUser);
 
-            $this->setSessionValue('user', $oUser);
+            $this->setSessionValues('user', $oUser);
             $this->isAuthentified = true;
 
             return $this->redirect();

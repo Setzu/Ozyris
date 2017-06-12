@@ -16,7 +16,7 @@ try {
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="page-not-fount">
+                <div class="page-not-found">
                     <h3 class="page-not-found">
                         <!-- @TODO : à décommenter sur environnement de prod : -->
 <!--                        Une erreur s'est produite, merci de réessayer ultérieurement.-->

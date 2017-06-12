@@ -8,7 +8,6 @@
 
 namespace Ozyris\Controller;
 
-use Ozyris\Service\AssetManager;
 use Ozyris\Service\Users;
 
 class IndexController extends AuthentificationController
@@ -17,23 +16,19 @@ class IndexController extends AuthentificationController
     public $oUser;
 
     /**
-     * IndexController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        if (array_key_exists('user', $_SESSION) && $_SESSION['user'] instanceof Users) {
-            $this->isAuthentified = true;
-            $this->oUser = $_SESSION['user'];
-        }
-    }
-
-    /**
+     * Affichage de la vue index
+     *
      * @return mixed
      */
     public function indexAction()
     {
+        $aSession = $this->getSession();
+
+        if (array_key_exists('user', $aSession) && $aSession['user'] instanceof Users) {
+            $this->isAuthentified = true;
+            $this->oUser = $aSession['user'];
+        }
+
         return $this->render();
     }
 }
