@@ -6,7 +6,7 @@
  * Time: 14:32
  */
 
-namespace Ozyris\Validator;
+namespace Ozyris\Form\Validator;
 
 use Ozyris\Stdlib\ValidatorInterface;
 

@@ -19,6 +19,10 @@ abstract class SessionManager
     const DANGER = 'danger';
     const SUCCESS = 'success';
 
+    public function __construct()
+    {
+        $this->startSession();
+    }
 
     /**
      * Démarre la session
@@ -47,7 +51,7 @@ abstract class SessionManager
     public function setSessionValues($values)
     {
         if (!is_array($values)) {
-            $_SESSION = $values;
+            $_SESSION[] = $values;
         } else {
             foreach ($values as $k => $v) {
                 if (!is_string($k) || !is_int($k)) {
@@ -140,9 +144,11 @@ abstract class SessionManager
     public function flashMessages()
     {
         if (array_key_exists(self::FLASH_MESSAGE, $_SESSION)) {
+            echo '<ul>';
             foreach ($_SESSION[self::FLASH_MESSAGE] as $type => $message) {
-                echo "<div class='alert alert-$type'>$message</div>";
+                echo "<div class='flashmessage alert alert-$type'><li>$message</li></div>";
             }
+            echo '</ul>';
         }
 
         return $this->destroySession(self::FLASH_MESSAGE);

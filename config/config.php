@@ -13,6 +13,4 @@ error_reporting(E_ALL);
 
 $loader = require_once __DIR__ . '/../vendor/autoload.php';
 
-\Ozyris\Service\Dispatch::dispatch();
-
 include_once __DIR__ . '/../src/Ozyris/View/layout/layout.php';

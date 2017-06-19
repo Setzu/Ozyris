@@ -5,6 +5,8 @@
  * Date: 26/05/16
  * Time: 13:54
  */
+
+use Ozyris\Controller\IndexController;
 ?>
 
 <html>
@@ -29,11 +31,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <?php // $oIndexController->flashMessages(); ?>
+            <?php
+                $oIndexController = new IndexController();
+                $oIndexController->flashMessages();
+            ?>
         </div>
     </div>
     <div class="row">
-
+        <?php \Ozyris\Service\Dispatch::dispatch(); ?>
     </div>
 </div>
 

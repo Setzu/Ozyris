@@ -6,7 +6,7 @@
  * Time: 15:32
  */
 
-namespace Ozyris\Validator;
+namespace Ozyris\Form\Validator;
 
 class PasswordValidator extends StandardValidator
 {

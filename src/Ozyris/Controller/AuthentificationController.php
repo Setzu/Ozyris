@@ -9,10 +9,10 @@
 namespace Ozyris\Controller;
 
 use Ozyris\Model\UserModel;
-use Ozyris\Validator\EmailValidator;
+use Ozyris\Form\Validator\EmailValidator;
+use Ozyris\Form\Validator\PasswordValidator;
+use Ozyris\Form\Validator\StandardValidator;
 use Ozyris\Service\Users;
-use Ozyris\Validator\PasswordValidator;
-use Ozyris\Validator\StandardValidator;
 
 class AuthentificationController extends AbstractController
 {
@@ -79,7 +79,7 @@ class AuthentificationController extends AbstractController
             }
 
             $this->startSession();
-            $this->setSessionValue('email', $sUserEmail);
+            $this->setSessionValues(['email' => $sUserEmail]);
 
             $sUsername = (string) htmlspecialchars(trim($_POST['username']));
             $oStandarValidator = new StandardValidator();

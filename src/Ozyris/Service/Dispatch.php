@@ -10,19 +10,19 @@ namespace Ozyris\Service;
 
 use Ozyris\Controller;
 
-class Dispatch
+abstract class Dispatch
 {
     const DEFAULT_CONTROLLER = 'IndexController';
     const DEFAULT_ACTION = 'indexAction';
 
     /**
-     * Détermine le controller et l'action à appeler selon l'url
+     * Détermine le controller et l'action à appeler en fonction des paramètres passés dans l'url
      *
      * @return mixed
      */
     public static function dispatch()
     {
-        // Récupère le nom du contrôleur dans l'url
+        // Récupère le nom du contrôleur en paramètre dans l'url
         if (!empty($_GET['controller'])) {
             $sController = ucfirst(strtolower(trim(htmlspecialchars($_GET['controller'])))) . 'Controller';
         } else {
