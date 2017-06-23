@@ -67,7 +67,7 @@ class UserModel extends AbstractModel
         try {
             $stmt->bindParam(':username', $sValue);
             
-            if ($stmt->execute()) {
+            if (!$stmt->execute()) {
 //                $aSqlErrors = $stmt->errorInfo();
                 throw new \Exception(self::SQL_ERROR);
             }
@@ -80,14 +80,15 @@ class UserModel extends AbstractModel
     }
 
     /**
+     * Retourne true si l'utilisateur existe déjà
+     *
      * @param string $value
      * @return bool
      * @throws \Exception
      */
     public function ifUserAlreadyExist($value)
     {
-
-        $sql = "SELECT COUNT (username) FROM users WHERE username = :username OR email = :email";
+        $sql = "SELECT COUNT(username) FROM users WHERE username = :username OR email = :email";
         $stmt = $this->bdd->prepare($sql);
 
         $sValue = (string) $value;
@@ -101,7 +102,7 @@ class UserModel extends AbstractModel
                 throw new \Exception(self::SQL_ERROR);
             }
             
-            $iResult = $stmt->fetch();
+            $iResult = $stmt->fetchColumn();
             $stmt->closeCursor();
         } catch(\Exception $e) {
             die($e->getMessage());

@@ -54,7 +54,7 @@ abstract class SessionManager
             $_SESSION[] = $values;
         } else {
             foreach ($values as $k => $v) {
-                if (!is_string($k) || !is_int($k)) {
+                if (!is_string($k) && !is_int($k)) {
                     throw new \Exception('La clé doit être un entier ou une chaine de caractères.');
                 }
                 $_SESSION[$k] = $values;

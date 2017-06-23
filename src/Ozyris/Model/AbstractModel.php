@@ -25,7 +25,7 @@ abstract class AbstractModel
     {
         // Connexion à une base ODBC
         if (empty($user) || !is_string($user)) {
-            $dbname = 'demo';
+            $dbname = 'perso';
         }
         if (empty($password) || !is_string($password)) {
             $host = 'localhost';
