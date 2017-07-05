@@ -23,7 +23,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
 
 
     /**
-     * Crée une propriété pour chacunes des valeurs du tableau $aVariables
+     * Créée une propriété pour chacunes des valeurs du tableau $aVariables
      * Le nom des propriétés seront égales aux clés du tableau $aVariables
      * Les variables seront accessibles dans les vues avec $this->nom_variable
      *

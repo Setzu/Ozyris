@@ -6,7 +6,7 @@
  * Time: 11:56
  */
 
-if ($this->isAuthentified) { ?>
+if (array_key_exists('isAuthentified', $_SESSION) && $_SESSION['isAuthentified']) { ?>
 
     <div class="container">
         <div class="row">

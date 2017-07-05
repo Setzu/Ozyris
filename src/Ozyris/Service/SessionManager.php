@@ -12,7 +12,6 @@ abstract class SessionManager
 {
 
     public $aFlashMessages = [];
-    protected $aSession = [];
 
     const DEFAULT_EXPIRATION_TIME = 60;
     const FLASH_MESSAGE = 'flashmessage';
@@ -57,13 +56,11 @@ abstract class SessionManager
                 if (!is_string($k) && !is_int($k)) {
                     throw new \Exception('La clé doit être un entier ou une chaine de caractères.');
                 }
-                $_SESSION[$k] = $values;
+                $_SESSION[$k] = $v;
             }
         }
 
-        $this->aSession = $_SESSION;
-
-        return $this->aSession;
+        return $_SESSION;
     }
 
     /**
@@ -75,7 +72,7 @@ abstract class SessionManager
     {
         $this->startSession();
 
-        return $this->aSession;
+        return $_SESSION;
     }
 
     /**
@@ -91,8 +88,8 @@ abstract class SessionManager
             throw new \Exception('La clé doit être un entier ou une chaine de caractères.');
         }
 
-        if (array_key_exists($key, $this->aSession)) {
-            return $this->aSession[$key];
+        if (array_key_exists($key, $_SESSION)) {
+            return $_SESSION[$key];
         } else {
             return null;
         }
