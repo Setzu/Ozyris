@@ -7,6 +7,8 @@
  */
 
 use Ozyris\Controller\IndexController;
+
+$oIndexController = new IndexController();
 ?>
 
 <html>
@@ -25,6 +27,13 @@ use Ozyris\Controller\IndexController;
 <header>
     <div class="container">
         <?php include_once (__DIR__ . '/header.php'); ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bandeau">
+                    <a href="/">Accueil</a>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -32,7 +41,6 @@ use Ozyris\Controller\IndexController;
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <?php
-                $oIndexController = new IndexController();
                 $oIndexController->flashMessages();
             ?>
         </div>
@@ -43,7 +51,9 @@ use Ozyris\Controller\IndexController;
 </div>
 
 <footer>
-    <?php include_once (__DIR__ . '/footer.php'); ?>
+    <div class="container">
+        <?php include_once (__DIR__ . '/footer.php'); ?>
+    </div>
 </footer>
 
 </body>
