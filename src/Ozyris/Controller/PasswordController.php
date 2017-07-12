@@ -147,7 +147,7 @@ class PasswordController extends AbstractController
 
             // Redirection avec message de confirmation sur l'accueil
             $this->setFlashMessage('Votre mot de passe a été modifié avec succès', false);
-            $this->destroySession('reset-password');
+            $this->destroySessionValue('reset-password');
 
             return $this->redirect();
         }

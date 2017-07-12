@@ -96,18 +96,25 @@ abstract class SessionManager
     }
 
     /**
-     * Détruit la clé $key en session.
-     * Si $key vaut null, détruit toute la session
+     * Détruit toute la session
+     */
+    public function destroySession()
+    {
+        session_destroy();
+    }
+
+    /**
+     * Détruit la clé $key en session
      *
-     * @param null $key
+     * @param $key
      * @return $this
      */
-    public function destroySession($key = null)
+    public function destroySessionValue($key)
     {
-        if (array_key_exists($key, $_SESSION)) {
-            unset($_SESSION[$key]);
-        } else {
-            session_destroy();
+        if (is_string($key) || is_int($key)) {
+            if (array_key_exists($key, $_SESSION)) {
+                unset($_SESSION[$key]);
+            }
         }
 
         return $this;
@@ -148,6 +155,6 @@ abstract class SessionManager
             echo '</ul>';
         }
 
-        return $this->destroySession(self::FLASH_MESSAGE);
+        return $this->destroySessionValue(self::FLASH_MESSAGE);
     }
 }

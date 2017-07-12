@@ -137,7 +137,6 @@ class AuthentificationController extends AbstractController
     public function disconnectAction()
     {
         $this->destroySession();
-        $this->isAuthentified = false;
 
         return $this->redirect();
     }
