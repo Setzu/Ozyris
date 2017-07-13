@@ -28,7 +28,7 @@ abstract class AbstractController extends SessionManager implements ControllerIn
      * Les variables seront accessibles dans les vues avec $this->nom_variable
      *
      * @param array $aVariables
-     * @return mixed
+     * @return $this
      * @throws \Exception
      */
     protected function setVariables(array $aVariables)
@@ -36,15 +36,12 @@ abstract class AbstractController extends SessionManager implements ControllerIn
         foreach ($aVariables as $sName => $mValue) {
             if (!is_string($sName)) {
                 throw new \Exception('La clé doit être une chaîne de caractères.');
-            } elseif (property_exists($this, $sName)) {
-                throw new \Exception('La propriété ' . $sName . ' existe déjà');
             }
-
             // Création dynamique de la priopriété
-            return $this->{$sName} = $mValue;
+            $this->{$sName} = $mValue;
         }
 
-        return false;
+        return $this;
     }
 
     /**

@@ -13,8 +13,6 @@ use Ozyris\Service\Users;
 class IndexController extends AuthentificationController
 {
 
-    public $oUser;
-
     /**
      * Affichage de la vue index
      *
@@ -22,12 +20,14 @@ class IndexController extends AuthentificationController
      */
     public function indexAction()
     {
-        $aSession = $this->getSession();
-
-        if (array_key_exists('user', $aSession) && $aSession['user'] instanceof Users) {
+        if ($this->getUser() instanceof Users) {
             $this->isAuthentified = true;
-            $this->oUser = $aSession['user'];
         }
+
+        $this->setVariables([
+            'user' => $this->getUser(),
+            'isAuth' => $this->isAuthentified
+        ]);
 
         return $this->render();
     }

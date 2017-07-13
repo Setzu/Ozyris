@@ -17,6 +17,7 @@ class Users
     protected $password;
     protected $date_registration;
     protected $admin = false;
+    protected $role = 'member';
 
     /**
      * Users constructor.
@@ -148,6 +149,22 @@ class Users
     public function setAdmin($admin)
     {
         $this->admin = $admin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
 

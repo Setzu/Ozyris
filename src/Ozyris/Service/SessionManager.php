@@ -64,6 +64,20 @@ abstract class SessionManager
     }
 
     /**
+     * Retourne le user stocké en session
+     *
+     * @return Users | null
+     */
+    public function getUser()
+    {
+        if (key_exists('user', $_SESSION) && $_SESSION['user'] instanceof Users) {
+            return $_SESSION['user'];
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Récupère toute la session
      *
      * @return array

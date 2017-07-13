@@ -17,6 +17,8 @@ use Ozyris\Service\Users;
 class AuthentificationController extends AbstractController
 {
 
+    public $isAuthentified = false;
+
     /**
      * Connecte l'utilisateur, stocke l'objet Users en session, puis redirige sur l'accueil
      *
@@ -137,6 +139,7 @@ class AuthentificationController extends AbstractController
     public function disconnectAction()
     {
         $this->destroySession();
+        $this->isAuthentified = false;
 
         return $this->redirect();
     }

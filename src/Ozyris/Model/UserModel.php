@@ -53,12 +53,14 @@ class UserModel extends AbstractModel
     }
 
     /**
+     * Récupère toutes les infos du user
+     *
      * @param string $value
      * @return array
      */
     public function getUserByUsernameOrEmail($value)
     {
-        $sql = "SELECT id, username, email, password FROM users
+        $sql = "SELECT id, username, email, password, admin FROM users
                 WHERE username = :username OR email = :username";
 
         $stmt = $this->bdd->prepare($sql);
